@@ -35,12 +35,23 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
+  
+  # Mailer configuration
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.perform_deliveries = true 
+  
+  config.action_mailer.delivery_method = :letter_opener
+  
+  config.action_mailer.raise_delivery_errors = true
+  
   config.action_mailer.perform_caching = false
-
+  
+  # Configuration for generating fully qualified URLs in emails:
+  # Since emails are rendered and sent outside the context of a user's request to the Rails application,
+  # it's necessary to provide absolute URLs for any links within those emails. This ensures that recipients
+  # can click on links in the emails and be directed back to the appropriate domain and specific pages within the application.
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -73,4 +84,6 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  
 end

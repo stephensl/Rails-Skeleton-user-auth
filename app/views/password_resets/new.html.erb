@@ -1,0 +1,13 @@
+<h1>Reset Password</h1>
+
+<h3>Enter email address registered to your Gladz account.</h3>
+<%= form_with model: @user, url: password_reset_path do |form| %>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.submit "Reset Password" %>
+  </div>
+<% end %>
