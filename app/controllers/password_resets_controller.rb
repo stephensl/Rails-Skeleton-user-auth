@@ -42,4 +42,9 @@ class PasswordResetsController < ApplicationController
     redirect_to new_password_reset_path alert: "Invalid token. Please try again." unless @user.present?
   end
 
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+
 end
